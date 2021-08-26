@@ -4,9 +4,19 @@ from colorama import Fore, Back, Style,init
 from tabulate import tabulate
 import os
 
+version = '1.0.2'
+
 #Puncuation Destroyer
 def puncDestroy(word):
-	letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','\'','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+	letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+	output = ""
+	for x in word:
+		if x in letters:
+			output = output + x
+	return output
+
+def puncDestroySpaced(word):
+	letters = [' ','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 	output = ""
 	for x in word:
 		if x in letters:
@@ -19,7 +29,7 @@ def champRange(range):
 		return "Ranged"
 	else:
 		return "Melee"
-version = '1.0.1'
+
 # Initializes Colorama
 init(autoreset=True)
 champList = []
@@ -28,7 +38,7 @@ champList = []
 print(Fore.YELLOW+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
 print(Fore.CYAN+'                   Welcome To The')
 print(Fore.CYAN+'          League Of Legends Analysis Tool')
-print(Fore.RED+'                      V{}'.format(version))
+print(Fore.RED+'                       V{}'.format(version))
 print(Fore.YELLOW+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
 
 #      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -40,11 +50,11 @@ while len(champList) < 5:
 	champIn = input("Please enter {} more champions: ".format(5 - len(champList)))
 	splitChamps = champIn.split(",")
 	for x in splitChamps:
-		x = x.strip()
+		x = puncDestroySpaced(x)
 		x = x.title()
+		x = puncDestroy(x)
 		if x in league.champs['data']:
 			champList.append(puncDestroy(x))
-
 
 print("\nHere are the base stats for the 5 champions you are")
 print("going up against:\n")
