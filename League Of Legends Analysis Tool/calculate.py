@@ -61,18 +61,24 @@ def attack(champList):
 		i = i + 1
 		magicResist = magicResist + league.champs['data'][champList[i]]['stats']['spellblock']
 
+	#Final HP
+	i = -1
+	finalhp = 0
+	for x in champList:
+		i = i + 1
+		finalhp = finalhp + ((league.champs['data'][champList[i]]['stats']['hpperlevel']*17)+league.champs['data'][champList[i]]['stats']['hp'])*league.champs['data'][champList[i]]['stats']['armor']
+
 	#Boolean Definitions
 	tank = False
 	squishy = False
 	mResist = False
 	tArmor = False
 
-	finalhp = league.champs['data'][champList[i]]['stats']['hpperlevel']*17+league.champs['data'][champList[i]]['stats']['hp']
-
-	if finalhp > 11000:
+	#print("Final HP: "+str(finalhp)) #TODO Make health times armor
+	if finalhp > 335000:
 		tank = True
 		output = output + "This team is tanky. Build AD or AP.\n"
-	elif finalhp < 8000:
+	elif finalhp < 270000:
 		squishy = True
 		output = output + "This team is squishy. Build lethality.\n"
 
@@ -85,10 +91,15 @@ def attack(champList):
 		mResist = True
 
 	if not tank and not squishy:
-		output = output + "This team is not particularly tanky or squishy."
+		if finalhp > 295000:
+			output = output + "This team is average, but slightly more tanky.\n"
+		if finalhp < 285000:
+			output = output + "This team is average, but slightly more squishy.\n"
+		else:
+			output = output + "This team is not particularly tanky or squishy.\n"
 
-	if not mResist or tArmor:
-		output = output + "This team does not lean particularly towards armor or magic resist."
+	if not mResist and not tArmor:
+		output = output + "This team does not lean particularly towards armor or magic resist.\n"
 
 	return output
 
