@@ -2,6 +2,7 @@ import league
 import calculate
 from colorama import Fore, Back, Style,init
 from tabulate import tabulate
+import os
 
 #Puncuation Destroyer
 def puncDestroy(word):
@@ -18,7 +19,7 @@ def champRange(range):
 		return "Ranged"
 	else:
 		return "Melee"
-version = 1.0
+version = '1.0.1'
 # Initializes Colorama
 init(autoreset=True)
 champList = []
@@ -27,7 +28,7 @@ champList = []
 print(Fore.YELLOW+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
 print(Fore.CYAN+'                   Welcome To The')
 print(Fore.CYAN+'          League Of Legends Analysis Tool')
-print(Fore.RED+'                        V{}'.format(str(version)))
+print(Fore.RED+'                      V{}'.format(version))
 print(Fore.YELLOW+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
 
 #      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -84,3 +85,5 @@ print(calculate.defend(champList))
 
 print(Fore.RED+"To ATTACK against this team comp, you should build:")
 print(calculate.attack(champList))
+
+os.system('pause')
