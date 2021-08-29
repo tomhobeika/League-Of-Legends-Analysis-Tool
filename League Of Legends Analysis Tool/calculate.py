@@ -103,7 +103,7 @@ def attack(champList):
 
 	if tankScore >= 3:
 		tank = True
-		output = output + "This team is tanky. Build AD or AP.\n"
+		output = output + "This team is tanky. Build armor penetration or magic penetration.\n"
 	elif tankScore <= -3:
 		squishy = True
 		output = output + "This team is squishy. Build lethality.\n"
